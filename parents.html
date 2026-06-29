@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>অভিভাবক পোর্টাল | ইশাআ'তুস সুন্নাহ মাদ্রাসা</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;600;700&display=swap');
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #064e3b;
+            --primary-light: #0f766e;
+            --accent: #d97706;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --success: #22c55e;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        .admin-nav {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .admin-nav h2 { font-size: 20px; }
+        .btn-back {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-back:hover { background: var(--accent); }
+
+        .container {
+            max-width: 700px;
+            margin: 45px auto;
+            padding: 0 20px;
+        }
+
+        .box {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.02);
+            text-align: center;
+        }
+        .box h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        .box p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* Search Form */
+        .search-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .search-group input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #cbd5e1;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+        .search-group input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+        .btn-search {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 0 25px;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: inherit;
+            transition: 0.3s;
+        }
+        .btn-search:hover { background-color: var(--primary-light); }
+
+        /* Portal Results Card */
+        .result-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin-top: 25px;
+            padding: 25px;
+            text-align: left;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .result-header {
+            text-align: center;
+            border-bottom: 2px dashed #e2e8f0;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .result-header h4 { color: var(--primary); font-size: 18px; }
+        .result-header span { font-size: 13px; color: var(--muted); }
+
+        .meta-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+            font-size: 15px;
+        }
+        .meta-row:last-child { border-bottom: none; }
+        .meta-label { font-weight: 600; color: #475569; }
+        .meta-value { font-weight: 700; }
+
+        /* Badge Utilities */
+        .status-badge {
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 13px;
+        }
+        .status-badge.present { background: #dcfce7; color: #166534; }
+        .status-badge.absent { background: #fee2e2; color: #991b1b; }
+        .status-badge.paid { background: #e0f2fe; color: #0369a1; }
+        .status-badge.due { background: #fef3c7; color: #9a3412; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-nav">
+        <h2>🧔 ইশাআ'তুস সুন্নাহ মাদ্রাসা | অভিভাবক পোর্টাল</h2>
+        <a href="index.html" class="btn-back">⬅ মূল ওয়েবসাইটে ফিরুন</a>
+    </div>
+
+    <div class="container">
+        <div class="box">
+            <h3>সন্তানের তথ্য অনুসন্ধান করুন</h3>
+            <p>আপনার সন্তানের দৈনিক মাদ্রাসার হাজিরা, পরীক্ষার ফলাফল এবং আবাসিক/বোর্ডিং ফান্ডের বকেয়া জানতে নিচে তার সঠিক রোল নম্বরটি ইনপুট দিয়ে খুঁজুন।</p>
+            
+            <form id="searchForm">
+                <div class="search-group">
+                    <input type="number" id="rollInput" placeholder="ছাত্রের রোল নম্বর দিন (উদা: ১, ২, ৩, ৪)" required>
+                    <button type="submit" class="btn-search">খুঁজুন 🔍</button>
+                </div>
+            </form>
+
+            <div class="result-card" id="studentDataCard">
+                <div class="result-header">
+                    <h4 id="resName">আব্দুল্লাহ আল-মাহমুদ</h4>
+                    <span id="resClass">কিতাব বিভাগ</span>
+                </div>
+                
+                <div class="meta-row">
+                    <span class="meta-label">রোল নম্বর:</span>
+                    <span class="meta-value" id="resRoll">০১</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">আজকের উপস্থিতি স্ট্যাটাস:</span>
+                    <span class="meta-value" id="resAttendance"></span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">বার্ষিক আবাসিক চার্জ:</span>
+                    <span class="meta-value" id="resMonthlyCharge">৳২,০০০ / মাস</span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">খানা ও আবাসন ফান্ড বকেয়া:</span>
+                    <span class="meta-value" id="resFinance"></span>
+                </div>
+                <div class="meta-row">
+                    <span class="meta-label">সর্বশেষ পরীক্ষার গড় ফলাফল:</span>
+                    <span class="meta-value" id="resGrade" style="color:var(--primary);">মুমতাজ (A+)</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Khoshra Mock Database for Parent Search
+        const studentDatabase = {
+            "1": {
+                name: "আব্দুল্লাহ আল-মাহমুদ",
+                class: "কিতাব বিভাগ",
+                roll: "০১",
+                present: true,
+                charge: "৳২,০০০",
+                financialStatus: "paid",
+                financeText: "কোনো বকেয়া নেই (পরিশোধিত)",
+                grade: "মুমতাজ (A+)"
+            },
+            "2": {
+                name: "মুহাম্মাদ সালমান",
+                class: "হিফজ বিভাগ",
+                roll: "০২",
+                present: true,
+                charge: "৳১,৫০০",
+                financialStatus: "due",
+                financeText: "৳১,৫০০ বকেয়া আছে",
+                grade: "জায়্যিদ জিদ্দান (A)"
+            },
+            "3": {
+                name: "জাইনুল আবেদিন",
+                class: "নূরানী বিভাগ",
+                roll: "০৩",
+                present: false,
+                charge: "৳১,Constants.২০০",
+                financialStatus: "paid",
+                financeText: "কোনো বকেয়া নেই (পরিশোধিত)",
+                grade: "জায়্যিদ (B)"
+            },
+            "4": {
+                name: "আহসান হাবিব",
+                class: "কিতাব বিভাগ",
+                roll: "০৪",
+                present: true,
+                charge: "৳২,০০০",
+                financialStatus: "due",
+                financeText: "৳৪,০০০ বকেয়া আছে (২ মাস)",
+                grade: "মুমতাজ (A+)"
+            }
+        };
+
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const roll = document.getElementById('rollInput').value.trim();
+            const card = document.getElementById('studentDataCard');
+            
+            if (studentDatabase[roll]) {
+                const student = studentDatabase[roll];
+                
+                document.getElementById('resName').innerText = student.name;
+                document.getElementById('resClass').innerText = student.class;
+                document.getElementById('resRoll').innerText = student.roll;
+                document.getElementById('resMonthlyCharge').innerText = student.charge + " / মাস";
+                document.getElementById('resGrade').innerText = student.grade;
+
+                // Attendance Badge
+                const attArea = document.getElementById('resAttendance');
+                if(student.present) {
+                    attArea.innerHTML = `<span class="status-badge present">حاضر (উপস্থিত আছে)</span>`;
+                } else {
+                    attArea.innerHTML = `<span class="status-badge absent">غائب (অনুপস্থিত)</span>`;
+                }
+
+                // Financial Badge
+                const finArea = document.getElementById('resFinance');
+                if(student.financialStatus === 'paid') {
+                    finArea.innerHTML = `<span class="status-badge paid">${student.financeText}</span>`;
+                } else {
+                    finArea.innerHTML = `<span class="status-badge due" style="color:#b91c1c;">${student.financeText}</span>`;
+                }
+
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+                alert('দুঃখিত! এই রোল নম্বরের কোনো ছাত্রের তথ্য পাওয়া যায়নি। অনুগ্রহ করে সঠিক রোল নম্বর দিন।');
+            }
+        });
+    </script>
+</body>
+</html>
