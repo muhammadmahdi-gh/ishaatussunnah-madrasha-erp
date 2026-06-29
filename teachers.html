@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>আসাতেযা প্যানেল | ইশাআ'তুস সুন্নাহ মাদ্রাসা</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;600;700&display=swap');
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #064e3b;
+            --primary-light: #0f766e;
+            --accent: #d97706;
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --success: #22c55e;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        .admin-nav {
+            background-color: var(--primary);
+            color: white;
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        .admin-nav h2 { font-size: 20px; }
+        .btn-back {
+            background: rgba(255,255,255,0.15);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+        .btn-back:hover { background: var(--accent); }
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+
+        /* Grid Layout */
+        .main-layout {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 30px;
+        }
+        @media (max-width: 900px) {
+            .main-layout { grid-template-columns: 1fr; }
+        }
+
+        .box {
+            background: var(--card);
+            padding: 25px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.01);
+            margin-bottom: 30px;
+        }
+        .box h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 8px;
+            font-size: 18px;
+        }
+
+        /* Attendance Styles */
+        .attendance-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .attendance-row:last-child { border-bottom: none; }
+        .attendance-status button {
+            padding: 5px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            margin-left: 5px;
+            background: white;
+        }
+        .btn-present.active { background-color: #dcfce7; color: #15803d; border-color: #bbf7d0; }
+        .btn-absent.active { background-color: #fee2e2; color: #b91c1c; border-color: #fca5a5; }
+
+        .stat-banner {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: var(--primary);
+            text-align: center;
+        }
+
+        /* Form Styles */
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        .form-group { margin-bottom: 15px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+        .form-group input, .form-group select {
+            width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit;
+        }
+        .btn-submit {
+            background-color: var(--primary); color: white; border: none; width: 100%;
+            padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 15px; transition: 0.3s;
+        }
+        .btn-submit:hover { background-color: var(--primary-light); }
+
+        /* Report Card Template */
+        .report-card {
+            background: #fff;
+            border: 2px solid var(--primary);
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 20px;
+            display: none;
+        }
+        .report-header { text-align: center; margin-bottom: 20px; border-bottom: 2px dashed #cbd5e1; padding-bottom: 15px; }
+        .report-header h4 { color: var(--primary); font-size: 20px; }
+        .report-header p { font-size: 13px; color: var(--muted); }
+        .student-meta { display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: 600; font-size: 14px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 14px; }
+        th, td { padding: 10px; border: 1px solid #cbd5e1; text-align: center; }
+        th { background: #f8fafc; }
+
+        .btn-print {
+            background-color: var(--accent); color: white; border: none; padding: 10px 20px;
+            border-radius: 6px; font-weight: bold; cursor: pointer; display: block; margin: 15px auto 0; transition: 0.3s;
+        }
+        .btn-print:hover { background-color: #b45309; }
+
+        @media print {
+            body * { visibility: hidden; }
+            .report-card, .report-card * { visibility: visible; }
+            .report-card { position: absolute; left: 0; top: 0; width: 100%; border: none; }
+            .btn-print { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="admin-nav">
+        <h2>🕌 আসাতেযা ও শিক্ষক কন্ট্রোল প্যানেল</h2>
+        <a href="index.html" class="btn-back">⬅ মূল ওয়েবসাইটে ফিরুন</a>
+    </div>
+
+    <div class="container">
+        <div class="main-layout">
+            
+            <div>
+                <div class="box">
+                    <h3>📝 দৈনিক ডিজিটাল হাজিরা খাতা</h3>
+                    <div class="stat-banner">
+                        আজকের মোট ছাত্র উপস্থিতি: <span id="presentCount">৪</span> / ৪ জন
+                    </div>
+                    
+                    <div id="attendanceList">
+                        <div class="attendance-row">
+                            <div><strong>১. আব্দুল্লাহ আল-মাহমুদ</strong> <span style="font-size:12px; color:var(--muted);">(কিতাব বিভাগ)</span></div>
+                            <div class="attendance-status">
+                                <button class="btn-present active" onclick="toggleAttendance(this, 'p')">حاضر (উপস্থিত)</button>
+                                <button class="btn-absent" onclick="toggleAttendance(this, 'a')">غائب</button>
+                            </div>
+                        </div>
+                        <div class="attendance-row">
+                            <div><strong>২. মুহাম্মাদ سلمان</strong> <span style="font-size:12px; color:var(--muted);">(হিফজ বিভাগ)</span></div>
+                            <div class="attendance-status">
+                                <button class="btn-present active" onclick="toggleAttendance(this, 'p')">حاضر (উপস্থিত)</button>
+                                <button class="btn-absent" onclick="toggleAttendance(this, 'a')">غائب</button>
+                            </div>
+                        </div>
+                        <div class="attendance-row">
+                            <div><strong>৩. জাইনুল আবেদিন</strong> <span style="font-size:12px; color:var(--muted);">(নূরানী বিভাগ)</span></div>
+                            <div class="attendance-status">
+                                <button class="btn-present active" onclick="toggleAttendance(this, 'p')">حاضর (উপস্থিত)</button>
+                                <button class="btn-absent" onclick="toggleAttendance(this, 'a')">غائب</button>
+                            </div>
+                        </div>
+                        <div class="attendance-row">
+                            <div><strong>৪. আহসান হাবিব</strong> <span style="font-size:12px; color:var(--muted);">(কিতাব বিভাগ)</span></div>
+                            <div class="attendance-status">
+                                <button class="btn-present active" onclick="toggleAttendance(this, 'p')">حاضর (উপস্থিত)</button>
+                                <button class="btn-absent" onclick="toggleAttendance(this, 'a')">غائب</button>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn-submit" style="margin-top:20px;" onclick="alert('আজকের হাজিরা সফলভাবে ডাটাবেজে সংরক্ষণ করা হয়েছে!')">হাজিরা খাতা সাবমিট করুন</button>
+                </div>
+            </div>
+
+            <div>
+                <div class="box">
+                    <h3>📊 পরীক্ষার মার্কশিট ও রেজাল্ট জেনারেটর</h3>
+                    <form id="resultForm">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>ছাত্রের নাম</label>
+                                <input type="text" id="studentName" placeholder="উদা: আব্দুল্লাহ" required>
+                            </div>
+                            <div class="form-group">
+                                <label>রোল নম্বর</label>
+                                <input type="number" id="studentRoll" placeholder="উদা: ০৫" required>
+                            </div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>বিভাগ</label>
+                                <select id="studentClass">
+                                    <option value="নূরানী বিভাগ">নূরানী বিভাগ</option>
+                                    <option value="হিফজুল কুরআন বিভাগ">হিফজুল কুরআন বিভাগ</option>
+                                    <option value="কিতাব বিভাগ">কিতাব বিভাগ</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>পরীক্ষার নাম</label>
+                                <select id="examName">
+                                    <option value="বার্ষিক পরীক্ষা">বার্ষিক পরীক্ষা</option>
+                                    <option value="ষাণ্মাসিক পরীক্ষা">ষাণ্মাসিক পরীক্ষা</option>
+                                    <option value="মাসিক মূল্যায়ন">মাসিক মূল্যায়ন</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <h4 style="font-size:14px; margin-bottom:10px; color:var(--primary-light);">📖 বিষয়ভিত্তিক নম্বর ইনপুট দিন (১০০ এর মধ্যে):</h4>
+                        <div class="form-grid">
+                            <div class="form-group"><label>কুরআন/আরবি</label><input type="number" id="numQuran" max="100" required></div>
+                            <div class="form-group"><label>আকাঈদ/ফিকহ</label><input type="number" id="numFiqh" max="100" required></div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group"><label>বাংলা</label><input type="number" id="numBangla" max="100" required></div>
+                            <div class="form-group"><label>গণিত</label><input type="number" id="numMath" max="100" required></div>
+                        </div>
+                        <div class="form-grid">
+                            <div class="form-group"><label>ইংরেজি</label><input type="number" id="numEnglish" max="100" required></div>
+                            <div class="form-group"><label>হাতেখড়ি/অন্যান্য</label><input type="number" id="numOther" max="100" required></div>
+                        </div>
+                        <button type="submit" class="btn-submit">স্বয়ংক্রিয় মার্কশিট তৈরি করুন</button>
+                    </form>
+
+                    <div class="report-card" id="printableReport">
+                        <div class="report-header">
+                            <h4>ইশাআ'তুস সুন্নাহ মাদ্রাসা, মুন্সীগঞ্জ</h4>
+                            <p>ছাত্র সাময়িক অগ্রগতি প্রোগ্রেস রিপোর্ট</p>
+                        </div>
+                        <div class="student-meta">
+                            <div>নাম: <span id="lblName"></span></div>
+                            <div>রোল: <span id="lblRoll"></span></div>
+                        </div>
+                        <div class="student-meta" style="margin-top:-5px; margin-bottom:20px;">
+                            <div>বিভাগ: <span id="lblClass"></span></div>
+                            <div>পরীক্ষা: <span id="lblExam"></span></div>
+                        </div>
+
+                        <table>
+                            <thead>
+                                <tr><th>বিষয়ের নাম</th><th>প্রাপ্ত নম্বর</th><th>গ্রেড</th></tr>
+                            </thead>
+                            <tbody id="reportTableBody">
+                                </tbody>
+                        </table>
+
+                        <div style="display:flex; justify-content:space-between; margin-top:25px; font-weight:700; font-size:15px; color:var(--primary);">
+                            <div>সর্বমোট নম্বর: <span id="lblTotal"></span> / ৬০০</div>
+                            <div>গড় গ্রেড: <span id="lblFinalGrade"></span></div>
+                        </div>
+                        
+                        <button class="btn-print" onclick="window.print()">🖨️ মার্কশিট প্রিন্ট / PDF করুন</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Attendance Counter Logic
+        let totalStudents = 4;
+        let presents = 4;
+
+        function toggleAttendance(btn, status) {
+            const row = btn.closest('.attendance-status');
+            const presentBtn = row.querySelector('.btn-present');
+            const absentBtn = row.querySelector('.btn-absent');
+
+            if(status === 'p' && !presentBtn.classList.contains('active')) {
+                presentBtn.classList.contains('active') ? null : presents++;
+                presentBtn.classList.add('active');
+                absentBtn.classList.remove('active');
+            } else if(status === 'a' && !absentBtn.classList.contains('active')) {
+                presents--;
+                absentBtn.classList.add('active');
+                presentBtn.classList.remove('active');
+            }
+            document.getElementById('presentCount').innerText = presents;
+        }
+
+        // Result Generator Logic
+        document.getElementById('resultForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('studentName').value;
+            const roll = document.getElementById('studentRoll').value;
+            const sClass = document.getElementById('studentClass').value;
+            const exam = document.getElementById('examName').value;
+
+            const marks = [
+                { name: 'কুরআন ও তাজবীদ / আরবি', mark: parseInt(document.getElementById('numQuran').value) },
+                { name: 'আকাঈদ ও ফিকহ / দ্বীনিয়াত', mark: parseInt(document.getElementById('numFiqh').value) },
+                { name: 'বাংলা ভাষা ও সাহিত্য', mark: parseInt(document.getElementById('numBangla').value) },
+                { name: 'গণিত / হিসাব', mark: parseInt(document.getElementById('numMath').value) },
+                { name: 'ইংরেজি ভাষা', mark: parseInt(document.getElementById('numEnglish').value) },
+                { name: 'হাতেখড়ি ও সাধারণ জ্ঞান', mark: parseInt(document.getElementById('numOther').value) }
+            ];
+
+            let totalMarks = 0;
+            const tableBody = document.getElementById('reportTableBody');
+            tableBody.innerHTML = '';
+
+            marks.forEach(item => {
+                totalMarks += item.mark;
+                let grade = 'মকবুল (C)';
+                if(item.mark >= 80) grade = 'মুমতাজ (A+)';
+                else if(item.mark >= 65) grade = 'জায়্যিদ জিদ্দান (A)';
+                else if(item.mark >= 50) grade = 'জায়্যিদ (B)';
+                else if(item.mark < 33) grade = 'রাসেব (Fail)';
+
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${item.name}</td><td>${item.mark}</td><td>${grade}</td>`;
+                tableBody.appendChild(tr);
+            });
+
+            // Set Meta Data Labels
+            document.getElementById('lblName').innerText = name;
+            document.getElementById('lblRoll').innerText = roll;
+            document.getElementById('lblClass').innerText = sClass;
+            document.getElementById('lblExam').innerText = exam;
+            document.getElementById('lblTotal').innerText = totalMarks;
+
+            // Final Evaluation
+            let finalGrade = 'জায়্যিদ (B)';
+            let avg = totalMarks / 6;
+            if(avg >= 80) finalGrade = 'মুমতাজ (A+)';
+            else if(avg >= 65) finalGrade = 'জায়্যিদ জিদ্দান (A)';
+            else if(avg < 33) finalGrade = 'রাসেব (Fail)';
+            document.getElementById('lblFinalGrade').innerText = finalGrade;
+
+            // Show Report Card Card Section
+            document.getElementById('printableReport').style.display = 'block';
+            document.getElementById('printableReport').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
