@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>আসাতেযা প্যানেল | ইশাআ'তুস সুন্নাহ মাদ্রাসা</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&family=Inter:wght@400;600;700&display=swap');
+        @import url('https://fonts.cdnfonts.com/css/kalpurush');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
         *, *::before, *::after {
             box-sizing: border-box;
@@ -25,8 +26,11 @@
             --danger: #ef4444;
         }
 
+        html, body, div, span, h1, h2, h3, h4, h5, h6, p, a, button, li, input, select, label, th, td {
+            font-family: 'Kalpurush', 'Inter', Arial, sans-serif !important;
+        }
+
         body {
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
             background-color: var(--bg);
             color: var(--text);
             line-height: 1.6;
@@ -61,10 +65,9 @@
             padding: 0 20px;
         }
 
-        /* Grid Layout */
         .main-layout {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: 1.1fr 1fr;
             gap: 30px;
         }
         @media (max-width: 900px) {
@@ -77,33 +80,97 @@
             border-radius: 16px;
             border: 1px solid #e2e8f0;
             box-shadow: 0 4px 6px rgba(0,0,0,0.01);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
         .box h3 {
             color: var(--primary);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border-bottom: 2px solid #f1f5f9;
             padding-bottom: 8px;
-            font-size: 18px;
+            font-size: 20px;
         }
 
-        /* Attendance Styles */
+        .clickable-header {
+            background-color: #f1f5f9;
+            color: var(--text);
+            padding: 12px 18px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+        .clickable-header:hover {
+            background-color: #e2e8f0;
+            color: var(--primary);
+        }
+        .clickable-header::after {
+            content: '▼';
+            font-size: 12px;
+            color: var(--muted);
+            transition: transform 0.3s;
+        }
+        .clickable-header.active::after {
+            transform: rotate(-180deg);
+            color: var(--accent);
+        }
+
+        .sub-clickable-header {
+            background-color: #ffffff;
+            color: #475569;
+            padding: 8px 15px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 15px;
+            font-weight: 600;
+            border: 1px dashed #cbd5e1;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-bottom: 6px;
+            transition: 0.2s;
+        }
+        .sub-clickable-header:hover { background-color: #f8fafc; color: var(--primary-light); }
+
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 10px;
+            background: #fafafa;
+            border-radius: 0 0 8px 8px;
+        }
+        .dropdown-content.open {
+            padding: 12px 10px;
+            border: 1px solid #e2e8f0;
+            border-top: none;
+            margin-bottom: 10px;
+        }
+
         .attendance-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px;
+            padding: 8px 5px;
             border-bottom: 1px solid #f1f5f9;
+            font-size: 14px;
         }
         .attendance-row:last-child { border-bottom: none; }
         .attendance-status button {
-            padding: 5px 12px;
+            padding: 4px 10px;
             border: 1px solid #cbd5e1;
-            border-radius: 6px;
+            border-radius: 4px;
             cursor: pointer;
             font-weight: 600;
-            font-size: 13px;
-            margin-left: 5px;
+            font-size: 12px;
+            margin-left: 4px;
             background: white;
         }
         .btn-present.active { background-color: #dcfce7; color: #15803d; border-color: #bbf7d0; }
@@ -112,55 +179,52 @@
         .stat-banner {
             background: #f0fdf4;
             border: 1px solid #bbf7d0;
-            padding: 12px;
+            padding: 10px;
             border-radius: 8px;
             margin-bottom: 15px;
             font-weight: 600;
             color: var(--primary);
             text-align: center;
+            font-size: 15px;
         }
 
-        /* Form Styles */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 12px;
+            margin-bottom: 12px;
         }
-        .form-group { margin-bottom: 15px; }
-        .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
         .form-group input, .form-group select {
-            width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-family: inherit;
+            width: 100%; padding: 8px 10px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 14px;
         }
         .btn-submit {
             background-color: var(--primary); color: white; border: none; width: 100%;
-            padding: 12px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 15px; transition: 0.3s;
+            padding: 10px; border-radius: 8px; font-weight: 700; cursor: pointer; font-size: 15px; transition: 0.3s;
         }
         .btn-submit:hover { background-color: var(--primary-light); }
 
-        /* Report Card Template */
         .report-card {
             background: #fff;
             border: 2px solid var(--primary);
             border-radius: 12px;
-            padding: 25px;
-            margin-top: 20px;
+            padding: 20px;
+            margin-top: 15px;
             display: none;
         }
-        .report-header { text-align: center; margin-bottom: 20px; border-bottom: 2px dashed #cbd5e1; padding-bottom: 15px; }
-        .report-header h4 { color: var(--primary); font-size: 20px; }
-        .report-header p { font-size: 13px; color: var(--muted); }
-        .student-meta { display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: 600; font-size: 14px; }
+        .report-header { text-align: center; margin-bottom: 15px; border-bottom: 2px dashed #cbd5e1; padding-bottom: 10px; }
+        .report-header h4 { color: var(--primary); font-size: 18px; }
+        .student-meta { display: flex; justify-content: space-between; margin-bottom: 10px; font-weight: 600; font-size: 13px; }
         
-        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 14px; }
-        th, td { padding: 10px; border: 1px solid #cbd5e1; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 13px; }
+        th, td { padding: 8px; border: 1px solid #cbd5e1; text-align: center; }
         th { background: #f8fafc; }
 
         .btn-print {
-            background-color: var(--accent); color: white; border: none; padding: 10px 20px;
-            border-radius: 6px; font-weight: bold; cursor: pointer; display: block; margin: 15px auto 0; transition: 0.3s;
+            background-color: var(--accent); color: white; border: none; padding: 8px 16px;
+            border-radius: 6px; font-weight: bold; cursor: pointer; display: block; margin: 10px auto 0;
         }
-        .btn-print:hover { background-color: #b45309; }
 
         @media print {
             body * { visibility: hidden; }
@@ -173,164 +237,273 @@
 <body>
 
     <div class="admin-nav">
-        <h2>🕌 আসাতেযা ও শিক্ষক কন্ট্রোল প্যানেল</h2>
+        <h2>🕌 আসাতেযা ও শিক্ষক কন্ট্রোল প্যানেল (লাইভ)</h2>
         <a href="index.html" class="btn-back">⬅ মূল ওয়েবসাইটে ফিরুন</a>
     </div>
 
     <div class="container">
         <div class="main-layout">
             
+            <!-- Left Side: Attendance Struct with Real Names -->
             <div>
                 <div class="box">
-                    <h3>📝 দৈনিক ডিজিটাল হাজিরা খাতা</h3>
-                    <div class="stat-banner">
-                        আজকের মোট ছাত্র উপস্থিতি: <span id="presentCount">৪</span> / ৪ জন
+                    <h3>📝 দৈনিক ডিজিটাল হাজিরা খাতা (বিভাগ ও জামাত ভিত্তিক)</h3>
+                    <div class="stat-banner">💡 যে জামাতের হাজিরা নিতে চান, নিচে সেই জামাতে ক্লিক করুন।</div>
+                    
+                    <!-- 1. Noorani Department -->
+                    <button class="clickable-header" onclick="toggleDropdown('nooraniDept', this)">১. নূরানী ও নাজেরা বিভাগ</button>
+                    <div id="nooraniDept" class="dropdown-content">
+                        
+                        <button class="sub-clickable-header" onclick="toggleDropdown('nooraniShishu', this)">🔹 নূরানী শিশু শ্রেণি (১০ জন)</button>
+                        <div id="nooraniShishu" class="dropdown-content" style="background:#fff; padding:5px 10px;">
+                            <div class="attendance-row"><div>১. মুহাম্মাদ আলি</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>২. উসামা আহমেদ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৩. হাসান মাহাদী</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৪. আব্দুল্লাহ রাইয়ান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৫. সাইফ আল ইসলাম</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৬. মাহির আসিফ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৭. আরাফাত রহমান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৮. মুস্তাকিম সাকিব</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৯. তানজিল হাসান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>১০. আবু বকর রাফি</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        </div>
+
+                        <button class="sub-clickable-header" onclick="toggleDropdown('noorani1', this)">🔹 প্রথম শ্রেণি (১০ জন)</button>
+                        <div id="noorani1" class="dropdown-content" style="background:#fff; padding:5px 10px;">
+                            <div class="attendance-row"><div>১. জাইনুল আবেদিন</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>২. তৌহিদুল ইসলাম</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৩. সালমান ফারসি</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৪. তামিম আনসারী</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৫. জুবায়ের মাহমুদ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৬. রাফসান জনি</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৭. সাদমান সাকিব</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৮. জোবায়ের হোসাইন</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৯. মুনতাসির বিল্লাহ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>১০. আদিব রহমান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        </div>
+
+                        <button class="sub-clickable-header" onclick="toggleDropdown('noorani2', this)">🔹 দ্বিতীয় শ্রেণি (১০ জন)</button>
+                        <div id="noorani2" class="dropdown-content" style="background:#fff; padding:5px 10px;">
+                            <div class="attendance-row"><div>১. রেদওয়ানুল হক</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>২. মাশরাফি ইসলাম</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৩. সাজিদুর রহমান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৪. ইনজামামুল কবির</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৫. জাহিদ হাসান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৬. তাসনিমুল আলম</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৭. সাব্বির রহমান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৮. আবিদ হাসান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৯. ইমতিয়াজ আহমেদ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>১০. মাহমুদুল হাসান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        </div>
+
+                        <button class="sub-clickable-header" onclick="toggleDropdown('noorani3', this)">🔹 তৃতীয় শ্রেণি (১০ জন)</button>
+                        <div id="noorani3" class="dropdown-content" style="background:#fff; padding:5px 10px;">
+                            <div class="attendance-row"><div>১. আশরাফুল ইসলাম</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>২. মিনহাজুল আবেদিন</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৩. ইয়াসির রাফাত</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৪. রাইয়ান বিন রফিক</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৫. ফুয়াদ হাসান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৬. মুয়াজ ইবনে জাবাল</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৭. নাফিস ফুয়াদ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৮. শাহরিয়ার নাজিম</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৯. ফয়সাল আহমেদ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>১০. মোস্তফা কামাল</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Hifz Department -->
+                    <button class="clickable-header" onclick="toggleDropdown('hifzDept', this)">২. হিফজুল কুরআন বিভাগ (১০ জন)</button>
+                    <div id="hifzDept" class="dropdown-content">
+                        <div class="attendance-row"><div>১. মুহাম্মাদ سلمان</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        <div class="attendance-row"><div>২. হাবিবুল্লাহ জিশান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        <div class="attendance-row"><div>৩. হাফেজ ইসমাইল হোসেন</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        <div class="attendance-row"><div>৪. যুবায়ের আল হাসান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        <div class="attendance-row"><div>৫. সাদমান ইসলাম নুহ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        <div class="attendance-row"><div>৬. তারেক আজিজ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        <div class="attendance-row"><div>৭. মোস্তফিজুর রহমান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        <div class="attendance-row"><div>৮. নাজমুল সাকিব হাফেজ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        <div class="attendance-row"><div>৯. রাইহানুল ইসলাম</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        <div class="attendance-row"><div>১০. ওলিউল্লাহ ওলি</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                    </div>
+
+                    <!-- 3. Kitab Department (With Your Specified Names) -->
+                    <button class="clickable-header" onclick="toggleDropdown('kitabDept', this)">৩. কিতাব বিভাগ (সকল জামাত)</button>
+                    <div id="kitabDept" class="dropdown-content">
+                        
+                        <!-- Real Names: Bishesh Jamoat -->
+                        <button class="sub-clickable-header" onclick="toggleDropdown('jamSpecial', this)">📙 বিশেষ জামাত (১০ জন)</button>
+                        <div id="jamSpecial" class="dropdown-content" style="background:#fff; padding:5px 10px;">
+                            <div class="attendance-row"><div>১. মুস্তাকিম বিল্লাহ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>২. যিয়াদুল কারীম ফাহাদ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৩. আয়াতুর রহমান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৪. জুনাইদ আহমদ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৫. মুজাহিদুল ইসলাম</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৬. তামিম ইকবাল</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৭. আবু বকর সিদ্দিক</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৮. নাজমুল হাসান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৯. নূর মোহাম্মদ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>১০. আব্দুর রহমান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        </div>
+
+                        <!-- Real Names: Mizan Jamoat -->
+                        <button class="sub-clickable-header" onclick="toggleDropdown('jamMizan', this)">📙 মিজান জামাত (৭ জন)</button>
+                        <div id="jamMizan" class="dropdown-content" style="background:#fff; padding:5px 10px;">
+                            <div class="attendance-row"><div>১. ফাহিম</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>২. ইয়াসিন আরাফাত</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৩. ইব্রাহিম খলিলুল্লাহ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৪. রফিকুল ইসলাম</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৫. শাওন</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৬. হাবিবুর রহমান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৭. নূর হাসান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        </div>
+
+                        <!-- Real Names: Nahvemir Jamoat -->
+                        <button class="sub-clickable-header" onclick="toggleDropdown('jamNahvemir', this)">📙 নাহবে মীর জামাত (৬ জন)</button>
+                        <div id="jamNahvemir" class="dropdown-content" style="background:#fff; padding:5px 10px;">
+                            <div class="attendance-row"><div>১. আব্দুল হামিদ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>২. আব্দে রব্বি</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৩. নাজমুল হাসান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৪. লিসান খান</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৫. ইউসুফ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৬. সাখাওয়াত হুসাইন</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        </div>
+
+                        <!-- Real Names: Hedayatun Nahve Jamoat -->
+                        <button class="sub-clickable-header" onclick="toggleDropdown('jamHedayat', this)">📙 হেদায়াতুন নাহু জামাত (৫ জন)</button>
+                        <div id="jamHedayat" class="dropdown-content" style="background:#fff; padding:5px 10px;">
+                            <div class="attendance-row"><div>১. মুহিবুল্লাহ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>২. ইমামুল হক</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৩. সিফাতুল্লাহ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৪. নাঈম</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>五. ইউসুফ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        </div>
+
+                        <!-- Real Names: Kafia Jamoat -->
+                        <button class="sub-clickable-header" onclick="toggleDropdown('jamKafia', this)">📙 কাফিয়া জামাত (৫ জন)</button>
+                        <div id="jamKafia" class="dropdown-content" style="background:#fff; padding:5px 10px;">
+                            <div class="attendance-row"><div>১. জহিরুল ইসলাম</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>২. শাহাদাত হোসাইন</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৩. আব্দুল্লাহ তাহসিন</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৪. হারুনুর রশিদ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                            <div class="attendance-row"><div>৫. ইয়াছিন আহমদ</div><div class="attendance-status"><button class="btn-present active" onclick="toggleAttendance(this)">حاضর</button><button class="btn-absent" onclick="toggleAttendance(this)">غائب</button></div></div>
+                        </div>
+
                     </div>
                     
-                    <div id="attendanceList">
-                        <div class="attendance-row">
-                            <div><strong>১. আব্দুল্লাহ আল-মাহমুদ</strong> <span style="font-size:12px; color:var(--muted);">(কিতাব বিভাগ)</span></div>
-                            <div class="attendance-status">
-                                <button class="btn-present active" onclick="toggleAttendance(this, 'p')">حاضر (উপস্থিত)</button>
-                                <button class="btn-absent" onclick="toggleAttendance(this, 'a')">غائب</button>
-                            </div>
-                        </div>
-                        <div class="attendance-row">
-                            <div><strong>২. মুহাম্মাদ سلمان</strong> <span style="font-size:12px; color:var(--muted);">(হিফজ বিভাগ)</span></div>
-                            <div class="attendance-status">
-                                <button class="btn-present active" onclick="toggleAttendance(this, 'p')">حاضر (উপস্থিত)</button>
-                                <button class="btn-absent" onclick="toggleAttendance(this, 'a')">غائب</button>
-                            </div>
-                        </div>
-                        <div class="attendance-row">
-                            <div><strong>৩. জাইনুল আবেদিন</strong> <span style="font-size:12px; color:var(--muted);">(নূরানী বিভাগ)</span></div>
-                            <div class="attendance-status">
-                                <button class="btn-present active" onclick="toggleAttendance(this, 'p')">حاضর (উপস্থিত)</button>
-                                <button class="btn-absent" onclick="toggleAttendance(this, 'a')">غائب</button>
-                            </div>
-                        </div>
-                        <div class="attendance-row">
-                            <div><strong>৪. আহসান হাবিব</strong> <span style="font-size:12px; color:var(--muted);">(কিতাব বিভাগ)</span></div>
-                            <div class="attendance-status">
-                                <button class="btn-present active" onclick="toggleAttendance(this, 'p')">حاضর (উপস্থিত)</button>
-                                <button class="btn-absent" onclick="toggleAttendance(this, 'a')">غائب</button>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn-submit" style="margin-top:20px;" onclick="alert('আজকের হাজিরা সফলভাবে ডাটাবেজে সংরক্ষণ করা হয়েছে!')">হাজিরা খাতা সাবমিট করুন</button>
+                    <button class="btn-submit" style="margin-top:20px;" onclick="alert('নির্বাচিত সকল জামাতের ডিজিটাল হাজিরা সফলভাবে ডাটাবেজে সংরক্ষণ করা হয়েছে!')">হাজিরা খাতা ফাইনাল সাবমিট করুন</button>
                 </div>
             </div>
 
+            <!-- Right Side: Printable Result Generator -->
             <div>
                 <div class="box">
-                    <h3>📊 পরীক্ষার মার্কশিট ও রেজাল্ট জেনারেটর</h3>
-                    <form id="resultForm">
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>ছাত্রের নাম</label>
-                                <input type="text" id="studentName" placeholder="উদা: আব্দুল্লাহ" required>
+                    <button class="clickable-header" style="background: #f0fdf4; border-color: #bbf7d0; color: var(--primary); margin-bottom: 0;" onclick="toggleDropdown('resultGeneratorBox', this)">
+                        📊 পরীক্ষার মার্কশিট ও রেজাল্ট জেনারেটর প্যানেল
+                    </button>
+                    
+                    <div id="resultGeneratorBox" class="dropdown-content" style="margin-top:15px;">
+                        <form id="resultForm">
+                            <div class="form-grid">
+                                <div class="form-group"><label>ছাত্রের নাম</label><input type="text" id="studentName" placeholder="উদা: মুস্তাকিম বিল্লাহ" required></div>
+                                <div class="form-group"><label>রোল নম্বর</label><input type="number" id="studentRoll" placeholder="উদা: ০১" required></div>
                             </div>
-                            <div class="form-group">
-                                <label>রোল নম্বর</label>
-                                <input type="number" id="studentRoll" placeholder="উদা: ০৫" required>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label>বিভাগ/জামাত</label>
+                                    <select id="studentClass">
+                                        <option value="নূরানী শিশু শ্রেণি">নূরানী শিশু শ্রেণি</option>
+                                        <option value="নূরানী ১ম শ্রেণি">নূরানী ১ম শ্রেণি</option>
+                                        <option value="হিফজুল কুরআন বিভাগ">হিফজুল কুরআন বিভাগ</option>
+                                        <option value="विशेष জামাত">বিশেষ জামাত</option>
+                                        <option value="মিজান জামাত">মিজান জামাত</option>
+                                        <option value="নাহবে মীর জামাত">নাহবে মীর জামাত</option>
+                                        <option value="হেদায়াতুন নাহু জামাত">হেদায়াতুন নাহু জামাত</option>
+                                        <option value="কাফিয়া জামাত">কাফিয়া জামাত</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>পরীক্ষার নাম</label>
+                                    <select id="examName">
+                                        <option value="বার্ষিক পরীক্ষা">বার্ষিক পরীক্ষা</option>
+                                        <option value="ষাণ্মাসিক পরীক্ষা">ষাণ্মাসিক পরীক্ষা</option>
+                                        <option value="মাসিক মূল্যায়ন">মাসিক মূল্যায়ন</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-grid">
-                            <div class="form-group">
-                                <label>বিভাগ</label>
-                                <select id="studentClass">
-                                    <option value="নূরানী বিভাগ">নূরানী বিভাগ</option>
-                                    <option value="হিফজুল কুরআন বিভাগ">হিফজুল কুরআন বিভাগ</option>
-                                    <option value="কিতাব বিভাগ">কিতাব বিভাগ</option>
-                                </select>
+
+                            <h4 style="font-size:14px; margin-bottom:10px; color:var(--primary-light);">📖 বিষয়ভিত্তিক নম্বর ইনপুট দিন (১০০ এর মধ্যে):</h4>
+                            <div class="form-grid">
+                                <div class="form-group"><label>কুরআন/আরби</label><input type="number" id="numQuran" max="100" required></div>
+                                <div class="form-group"><label>আকাঈদ/ফিকহ</label><input type="number" id="numFiqh" max="100" required></div>
                             </div>
-                            <div class="form-group">
-                                <label>পরীক্ষার নাম</label>
-                                <select id="examName">
-                                    <option value="বার্ষিক পরীক্ষা">বার্ষিক পরীক্ষা</option>
-                                    <option value="ষাণ্মাসিক পরীক্ষা">ষাণ্মাসিক পরীক্ষা</option>
-                                    <option value="মাসিক মূল্যায়ন">মাসিক মূল্যায়ন</option>
-                                </select>
+                            <div class="form-grid">
+                                <div class="form-group"><label>বাংলা</label><input type="number" id="numBangla" max="100" required></div>
+                                <div class="form-group"><label>গণিত</label><input type="number" id="numMath" max="100" required></div>
                             </div>
-                        </div>
+                            <div class="form-grid">
+                                <div class="form-group"><label>ইংরেজি</label><input type="number" id="numEnglish" max="100" required></div>
+                                <div class="form-group"><label>হাতেখড়ি/অন্যান্য</label><input type="number" id="numOther" max="100" required></div>
+                            </div>
+                            <button type="submit" class="btn-submit">স্বয়ংক্রিয় মার্কশিট তৈরি করুন</button>
+                        </form>
 
-                        <h4 style="font-size:14px; margin-bottom:10px; color:var(--primary-light);">📖 বিষয়ভিত্তিক নম্বর ইনপুট দিন (১০০ এর মধ্যে):</h4>
-                        <div class="form-grid">
-                            <div class="form-group"><label>কুরআন/আরবি</label><input type="number" id="numQuran" max="100" required></div>
-                            <div class="form-group"><label>আকাঈদ/ফিকহ</label><input type="number" id="numFiqh" max="100" required></div>
-                        </div>
-                        <div class="form-grid">
-                            <div class="form-group"><label>বাংলা</label><input type="number" id="numBangla" max="100" required></div>
-                            <div class="form-group"><label>গণিত</label><input type="number" id="numMath" max="100" required></div>
-                        </div>
-                        <div class="form-grid">
-                            <div class="form-group"><label>ইংরেজি</label><input type="number" id="numEnglish" max="100" required></div>
-                            <div class="form-group"><label>হাতেখড়ি/অন্যান্য</label><input type="number" id="numOther" max="100" required></div>
-                        </div>
-                        <button type="submit" class="btn-submit">স্বয়ংক্রিয় মার্কশিট তৈরি করুন</button>
-                    </form>
+                        <div class="report-card" id="printableReport">
+                            <div class="report-header">
+                                <h4>ইশাআ'তুস সুন্নাহ মাদ্রাসা, মুন্সীগঞ্জ</h4>
+                                <p>ছাত্র সাময়িক অগ্রগতি প্রোগ্রেস রিপোর্ট</p>
+                            </div>
+                            <div class="student-meta">
+                                <div>নাম: <span id="lblName"></span></div>
+                                <div>রোল: <span id="lblRoll"></span></div>
+                            </div>
+                            <div class="student-meta" style="margin-top:-5px; margin-bottom:15px;">
+                                <div>জামাত: <span id="lblClass"></span></div>
+                                <div>পরীক্ষা: <span id="lblExam"></span></div>
+                            </div>
 
-                    <div class="report-card" id="printableReport">
-                        <div class="report-header">
-                            <h4>ইশাআ'তুস সুন্নাহ মাদ্রাসা, মুন্সীগঞ্জ</h4>
-                            <p>ছাত্র সাময়িক অগ্রগতি প্রোগ্রেস রিপোর্ট</p>
-                        </div>
-                        <div class="student-meta">
-                            <div>নাম: <span id="lblName"></span></div>
-                            <div>রোল: <span id="lblRoll"></span></div>
-                        </div>
-                        <div class="student-meta" style="margin-top:-5px; margin-bottom:20px;">
-                            <div>বিভাগ: <span id="lblClass"></span></div>
-                            <div>পরীক্ষা: <span id="lblExam"></span></div>
-                        </div>
+                            <table>
+                                <thead><tr><th>বিষয়ের নাম</th><th>প্রাপ্ত নম্বর</th><th>গ্রেড</th></tr></thead>
+                                <tbody id="reportTableBody"></tbody>
+                            </table>
 
-                        <table>
-                            <thead>
-                                <tr><th>বিষয়ের নাম</th><th>প্রাপ্ত নম্বর</th><th>গ্রেড</th></tr>
-                            </thead>
-                            <tbody id="reportTableBody">
-                                </tbody>
-                        </table>
-
-                        <div style="display:flex; justify-content:space-between; margin-top:25px; font-weight:700; font-size:15px; color:var(--primary);">
-                            <div>সর্বমোট নম্বর: <span id="lblTotal"></span> / ৬০০</div>
-                            <div>গড় গ্রেড: <span id="lblFinalGrade"></span></div>
+                            <div style="display:flex; justify-content:space-between; margin-top:20px; font-weight:700; font-size:14px; color:var(--primary);">
+                                <div>সর্বমোট নম্বর: <span id="lblTotal"></span> / ৬০০</div>
+                                <div>গড় গ্রেড: <span id="lblFinalGrade"></span></div>
+                            </div>
+                            <button class="btn-print" onclick="window.print()">🖨️ মার্কশিট প্রিন্ট / PDF করুন</button>
                         </div>
-                        
-                        <button class="btn-print" onclick="window.print()">🖨️ মার্কশিট প্রিন্ট / PDF করুন</button>
                     </div>
-
                 </div>
             </div>
+
         </div>
     </div>
 
     <script>
-        // Attendance Counter Logic
-        let totalStudents = 4;
-        let presents = 4;
-
-        function toggleAttendance(btn, status) {
-            const row = btn.closest('.attendance-status');
-            const presentBtn = row.querySelector('.btn-present');
-            const absentBtn = row.querySelector('.btn-absent');
-
-            if(status === 'p' && !presentBtn.classList.contains('active')) {
-                presentBtn.classList.contains('active') ? null : presents++;
-                presentBtn.classList.add('active');
-                absentBtn.classList.remove('active');
-            } else if(status === 'a' && !absentBtn.classList.contains('active')) {
-                presents--;
-                absentBtn.classList.add('active');
-                presentBtn.classList.remove('active');
+        function toggleDropdown(id, headerBtn) {
+            const content = document.getElementById(id);
+            headerBtn.classList.toggle('active');
+            content.classList.toggle('open');
+            
+            if (content.classList.contains('open')) {
+                content.style.maxHeight = content.scrollHeight + 100 + "px";
+                const parentDropdown = headerBtn.closest('.dropdown-content');
+                if (parentDropdown) {
+                    parentDropdown.style.maxHeight = parentDropdown.scrollHeight + content.scrollHeight + "px";
+                }
+            } else {
+                content.style.maxHeight = "0px";
             }
-            document.getElementById('presentCount').innerText = presents;
         }
 
-        // Result Generator Logic
+        function toggleAttendance(btn) {
+            const row = btn.closest('.attendance-status');
+            row.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
         document.getElementById('resultForm').addEventListener('submit', function(e) {
             e.preventDefault();
-
             const name = document.getElementById('studentName').value;
             const roll = document.getElementById('studentRoll').value;
             const sClass = document.getElementById('studentClass').value;
@@ -362,14 +535,12 @@
                 tableBody.appendChild(tr);
             });
 
-            // Set Meta Data Labels
             document.getElementById('lblName').innerText = name;
             document.getElementById('lblRoll').innerText = roll;
             document.getElementById('lblClass').innerText = sClass;
             document.getElementById('lblExam').innerText = exam;
             document.getElementById('lblTotal').innerText = totalMarks;
 
-            // Final Evaluation
             let finalGrade = 'জায়্যিদ (B)';
             let avg = totalMarks / 6;
             if(avg >= 80) finalGrade = 'মুমতাজ (A+)';
@@ -377,9 +548,10 @@
             else if(avg < 33) finalGrade = 'রাসেব (Fail)';
             document.getElementById('lblFinalGrade').innerText = finalGrade;
 
-            // Show Report Card Card Section
             document.getElementById('printableReport').style.display = 'block';
-            document.getElementById('printableReport').scrollIntoView({ behavior: 'smooth' });
+            
+            const parentBox = document.getElementById('resultGeneratorBox');
+            parentBox.style.maxHeight = parentBox.scrollHeight + 500 + "px";
         });
     </script>
 </body>
