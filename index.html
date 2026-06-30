@@ -3,6 +3,538 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইসলামপুর ইশাআ'তুস সুন্নাহ মাদ্রাসা | কমপ্লিট ড্যাশবোর্ড</title>
+    <style>
+        /* কালপুরুষ ফন্টটি সরাসরি অনলাইন থেকে লোড করা হয়েছে */
+        @import url('https://fonts.cdnfonts.com/css/kalpurush');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --primary: #064e3b; /* Deep Islamic Green */
+            --primary-light: #0f766e;
+            --accent: #d97706; /* Amber/Gold */
+            --bg: #f8fafc;
+            --card: #ffffff;
+            --text: #1e293b;
+            --muted: #64748b;
+            --success: #22c55e;
+            --danger: #ef4444;
+        }
+
+        body {
+            font-family: 'Kalpurush', 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding-bottom: 50px;
+        }
+
+        /* হেডিং ও বাটনসহ সব জায়গায় সলিড কালপুরুষ লুক */
+        h1, h2, h3, h4, button, .btn-entry {
+            font-family: 'Kalpurush', sans-serif;
+        }
+
+        /* Top Bar & Notice Scroll */
+        .top-notice {
+            background-color: var(--accent);
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        .top-notice-title {
+            background: #b45309;
+            padding: 2px 10px;
+            border-radius: 4px;
+            margin-right: 12px;
+            white-space: nowrap;
+        }
+
+        /* Header & Navbar */
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 5%;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo-area h1 {
+            font-size: 30px;
+            letter-spacing: 0.2px;
+        }
+        .logo-area p {
+            font-size: 15px;
+            color: #a7f3d0;
+            margin-top: 4px;
+        }
+
+        /* Hero Banner */
+        .hero {
+            background: linear-gradient(rgba(6, 78, 59, 0.92), rgba(15, 118, 110, 0.88)), url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #e2e8f0;
+        }
+
+        /* Stats Section */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: -30px auto 40px;
+            padding: 0 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border-top: 4px solid var(--accent);
+        }
+        .stat-card h4 { font-size: 15px; color: var(--muted); }
+        .stat-card p { font-size: 24px; font-weight: bold; color: var(--primary); margin-top: 5px; }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto 40px;
+            padding: 0 20px;
+        }
+
+        /* Portals Section */
+        .section-title {
+            text-align: center;
+            margin: 40px 0 30px;
+            position: relative;
+            padding-bottom: 10px;
+            font-size: 28px;
+        }
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent);
+            border-radius: 2px;
+        }
+        .portal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 50px;
+        }
+        .portal-card {
+            background-color: var(--card);
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: 0.3s;
+        }
+        .portal-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(6, 78, 59, 0.08);
+            border-color: rgba(6, 78, 59, 0.2);
+        }
+        .portal-icon { font-size: 40px; margin-bottom: 15px; display: inline-block; }
+        .portal-card h3 { font-size: 22px; color: var(--primary); margin-bottom: 10px; }
+        .portal-card p { color: var(--muted); font-size: 15px; margin-bottom: 20px; height: 45px; }
+        .btn-entry {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            width: 100%;
+            transition: 0.3s;
+        }
+        .btn-entry:hover { background-color: var(--primary-light); }
+
+        /* Layout Grid */
+        .content-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        @media (max-width: 850px) {
+            .content-layout { grid-template-columns: 1fr; }
+        }
+        .box-container {
+            background-color: var(--card);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.01);
+        }
+        .box-container h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f1f5f9;
+            padding-bottom: 8px;
+            font-size: 24px;
+        }
+
+        /* ক্লিকঅ্যাবল ফোল্ডার স্টাইল (Accordion) */
+        .clickable-header {
+            background-color: #f1f5f9;
+            color: var(--text);
+            padding: 12px 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            font-weight: 600;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            transition: 0.3s;
+        }
+        .clickable-header:hover {
+            background-color: #e2e8f0;
+            color: var(--primary);
+        }
+        .clickable-header::after {
+            content: '▼';
+            font-size: 12px;
+            color: var(--muted);
+            transition: transform 0.3s;
+        }
+        .clickable-header.active::after {
+            transform: rotate(-180deg);
+            color: var(--accent);
+        }
+
+        .dropdown-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            padding: 0 15px;
+            margin-bottom: 10px;
+            background: #fafafa;
+            border-radius: 0 0 8px 8px;
+        }
+        .dropdown-content.open {
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-top: none;
+        }
+
+        /* Feature bullet style */
+        .feature-list { list-style-type: none; padding-left: 0; }
+        .feature-list li { padding: 6px 0; font-size: 15px; display: flex; align-items: center; gap: 8px;}
+        .feature-list li::before { content: "🔹"; }
+
+        /* Teachers List Specifics inside Dropdown */
+        .teachers-list {
+            max-height: 350px;
+            overflow-y: auto;
+        }
+        .teacher-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .teacher-item:last-child { border-bottom: none; }
+        .teacher-avatar {
+            width: 42px; height: 42px; border-radius: 50%;
+            background-color: #f0fdf4; border: 1px solid #bbf7d0;
+            display: flex; align-items: center; justify-content: center; font-size: 20px;
+        }
+        .teacher-info p:first-child { font-weight: 600; font-size: 16px; color: var(--text); }
+        .teacher-info p:last-child { color: var(--muted); font-size: 14px; }
+
+        /* Bank Details Box */
+        .bank-card {
+            background: #fdfbf7;
+            border: 1px dashed #d97706;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+        }
+        .bank-title { font-weight: 700; color: #b45309; font-size: 15px; margin-bottom: 5px; }
+        .bank-info { font-size: 14px; font-family: monospace; color: #475569; }
+
+        footer {
+            background-color: var(--primary);
+            color: #cbd5e1;
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
+            font-size: 15px;
+            border-top: 4px solid var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Notice Ticker -->
+    <div class="top-notice">
+        <span class="top-notice-title">জরুরি নোটিশ 📢</span>
+        <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+            ১লা রমজান থেকে নতুন বছরের ভর্তি কার্যক্রম শুরু হয়েছে (কোটা পূরণ পর্যন্ত)। • আবাসিক ও লিল্লাহ বোর্ডিংয়ের বকেয়া মাসিক খানা ফি দ্রুত হিসাব রক্ষকের নিকট জমা দিন।
+        </marquee>
+    </div>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <div class="logo-area">
+                <h1>ইসলামপুর ইশাআ'তুস সুন্নাহ মাদ্রাসা</h1>
+                <p>📍 উত্তর ইসলামপুর, মুন্সীগঞ্জ সদর, মুন্সীগঞ্জ | 📞 ০১৭৭১০০৪৭৬৫</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h2>সমন্বিত ডিজিটাল মাদ্রাসা ড্যাশবোর্ড (ERP)</h2>
+        <p>দ্বীনি ইলমের প্রচার ও প্রশাসনিক স্বচ্ছতা নিশ্চিত করতে আমাদের সমন্বিত ইআরপি (ERP) ড্যাশবোর্ড।</p>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <h4>মোট ছাত্র সংখ্যা</h4>
+            <p>২২০ জন</p>
+        </div>
+        <div class="stat-card">
+            <h4>আবাসিক / বোর্ডিং ছাত্র</h4>
+            <p>১২৫ জন</p>
+        </div>
+        <div class="stat-card">
+            <h4>আসাতেযা ও স্টাফ</h4>
+            <p>১৬ জন</p>
+        </div>
+        <div class="stat-card">
+            <h4>মাসিক আনুমানিক খরচ</h4>
+            <p>৳২,০০,০০০</p>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+
+        <!-- Portals Section -->
+        <h2 class="section-title">অভ্যন্তরীণ কন্ট্রোল প্যানেল</h2>
+        <div class="portal-grid">
+            
+            <!-- Committee Portal -->
+            <div class="portal-card">
+                <span class="portal-icon">🏛️</span>
+                <h3>পরিচালনা কমিটি ও মুহতামিম</h3>
+                <p>দৈনিক বাজার খাতা, লিল্লাহ ফান্ড কালেকশন, বাৎসরিক আয়-ব্যয় রিপোর্ট এবং মাসিক স্টাফ বেতন এন্ট্রি খাতা।</p>
+                <a href="committee.html" class="btn-entry">কমিটি প্যানেলে প্রবেশ</a>
+            </div>
+
+            <!-- Teachers Portal -->
+            <div class="portal-card">
+                <span class="portal-icon">🕌</span>
+                <h3>আসাতেযা / শিক্ষক প্যানেল</h3>
+                <p>ছাত্রদের দৈনিক ডিজিটাল হাজিরা, পরীক্ষার বিষয়ভিত্তিক নম্বর ইনপুট এবং স্বয়ংক্রিয় প্রোগ্রেস মার্কশিট জেনারেটর।</p>
+                <a href="teachers.html" class="btn-entry">শিক্ষক প্যানেলে প্রবেশ</a>
+            </div>
+
+            <!-- Parents Portal -->
+            <div class="portal-card">
+                <span class="portal-icon">🧔</span>
+                <h3>অভিভাবক পোর্টাল</h3>
+                <p>সন্তানের দৈনিক মাদ্রাসার হাজিরা ট্র্যাকার, পরীক্ষার ফাইনাল রেজাল্ট এবং মাসিক আবাসিক খানা ফি-র বকেয়া তালিকা।</p>
+                <a href="parents.html" class="btn-entry">অভিভাবক প্যানেলে প্রবেশ</a>
+            </div>
+
+        </div>
+
+        <!-- Layout Grid -->
+        <div class="content-layout">
+            
+            <!-- Left: Clickable Departments & Bank -->
+            <div class="box-container">
+                <h3>বিদ্যমান শিক্ষাগত বিভাগসমূহ</h3>
+                <p style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">*বিভাগের বিস্তারিত বৈশিষ্ট্য দেখতে নিচের অপশনগুলোতে ক্লিক করুন:</p>
+                
+                <!-- Department 1 -->
+                <button class="clickable-header" onclick="toggleDropdown('dept1', this)">১. নূরানী বিভাগ</button>
+                <div id="dept1" class="dropdown-content">
+                    <ul class="feature-list">
+                        <li>শিশু শ্রেণি থেকে ৩য় শ্রেণি পর্যন্ত সুবিন্যস্ত পাঠ্যক্রম।</li>
+                        <li>খুবই অল্প সময়ে সহীহ-শুদ্ধভাবে পবিত্র কুরআন তিলাওয়াত শিক্ষা।</li>
+                        <li>পড়ার পাশাপাশি বাংলা, ইংরেজি ও গণিতের মৌলিক বুনিয়াদ তৈরি।</li>
+                        <li>ইসলামিক আদব-кауদা, মাসনুন দোয়া ও দৈনন্দিন সুন্নাহর প্র্যাকটিক্যাল তালিম।</li>
+                    </ul>
+                </div>
+
+                <!-- Department 2 -->
+                <button class="clickable-header" onclick="toggleDropdown('dept2', this)">২. হিফজুল কুরআন বিভাগ</button>
+                <div id="dept2" class="dropdown-content">
+                    <ul class="feature-list">
+                        <li>জাতীয় ও আন্তর্জাতিক মানের প্রশিক্ষণপ্রাপ্ত হাফেজ শিক্ষক দ্বারা পরিচালিত।</li>
+                        <li>প্রতিটি ছাত্রের মানসিক ধারণক্ষমতা অনুযায়ী প্রতিদিনের পড়া ও সবক নির্ধারণ।</li>
+                        <li>কুরআন হিফজের পাশাপাশি তাজবীদের নিয়মকানুন নিখুঁতভাবে শেখানো।</li>
+                        <li>আবাসিক ছাত্রদের জন্য সার্বক্ষণিক বিশেষ নেগরানী ও তদারকির ব্যবস্থা।</li>
+                    </ul>
+                </div>
+
+                <!-- Department 3 -->
+                <button class="clickable-header" onclick="toggleDropdown('dept3', this)">৩. কিতাব বিভাগ</button>
+                <div id="dept3" class="dropdown-content">
+                    <ul class="feature-list">
+                        <li>শরহে বেকায়া জামাত (দশম শ্রেণি) পর্যন্ত বিস্তৃত উচ্চতর দ্বীনি শিক্ষা।</li>
+                        <li>আরби ভাষা, নাহু-সরফ, ফিকাহ এবং আকীদার জটিল বিষয়গুলোর সহজ সমাধান।</li>
+                        <li>যোগ্য আলেম ও দ্বীনের দায়ী হিসেবে ছাত্রদের গড়ে তোলার বিশেষ পাঠ্যक्रम।</li>
+                        <li>সমসাময়িক মাসআলা-মাসায়েল ও নৈতিকতা চর্চার অনন্য প্রাতিষ্ঠানিক পরিবেশ।</li>
+                    </ul>
+                </div>
+
+                <!-- Bank Info inside static section -->
+                <h4 style="color: var(--primary); font-size: 18px; margin-top: 30px; margin-bottom: 10px;">💳 অনলাইন অনুদান ও সাহায্য (ব্যাংক অ্যাকাউন্ট)</h4>
+                <div class="bank-card">
+                    <div class="bank-title">🕌 সাধারণ দান (মাদ্রাসা ফান্ড)</div>
+                    <div class="bank-info">সাউথ ইস্ট ব্যাংক, মুন্সীগঞ্জ শাখা<br>অ্যাকাউন্ট নং: ০০৬১২১১০০০০০০৫২০</div>
+                </div>
+                <div class="bank-card">
+                    <div class="bank-title">🍲 লিল্লাহ বোর্ডিং (যাকাত ও খাদ্য ফান্ড)</div>
+                    <div class="bank-info">সাউথ ইস্ট ব্যাংক, মুন্সীগঞ্জ শাখা<br>অ্যাকাউন্ট নং: ০০৬১৯২১০০০০০০৩১৬</div>
+                </div>
+            </div>
+
+            <!-- Right: Clickable Teachers List -->
+            <div class="box-container">
+                <h3>মাদ্রাসার আসাতেযা ও স্টাফবৃন্দ</h3>
+                <p style="margin-bottom: 20px; color: var(--muted); font-size: 14px;">*১৬ জন শিক্ষক ও স্টাফদের তালিকা দেখতে নিচে ক্লিক করুন:</p>
+
+                <button class="clickable-header" onclick="toggleDropdown('teachersDropdown', this)">👳 সম্মানিত আসাতেযা ও স্টাফ তালিকা দেখুন</button>
+                <div id="teachersDropdown" class="dropdown-content">
+                    <div class="teachers-list">
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👳</div>
+                            <div class="teacher-info"><p>হাফেজ মাওলানা মো: নূরুল্লাহ</p><p>মুহতামিম ও প্রধান জিম্মাদার</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👳</div>
+                            <div class="teacher-info"><p>মাওলানা রহমতুল্লাহ</p><p>নাজিমে তালিমাত (শিক্ষা সচিব)</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👳</div>
+                            <div class="teacher-info"><p>মাওলানা দিদারুল ইসলাম</p><p>নাজিমে দারুল ইকামা (আবাসিক সুপার)</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👳</div>
+                            <div class="teacher-info"><p>মাওলানা ওসামা বিন মনির</p><p>সহকারী শিক্ষক, কিতাব বিভাগ</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👳</div>
+                            <div class="teacher-info"><p>মাওলানা আবু ইউসুফ</p><p>সহকারী শিক্ষক, কিতাব বিভাগ</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👳</div>
+                            <div class="teacher-info"><p>মাওলানা মুহাম্মদ মাহদী</p><p>সহকারী শিক্ষক, কিতাব বিভাগ</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👨‍🏫</div>
+                            <div class="teacher-info"><p>মাস্টার মুহিউদ্দিন</p><p>সহকারী শিক্ষক, কিতাব বিভাগ</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👳</div>
+                            <div class="teacher-info"><p>হাফেজ সাব্বির</p><p>সহকারী শিক্ষক, হিফজ বিভাগ</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👳</div>
+                            <div class="teacher-info"><p>হাফেজ আবু হানিফ</p><p>সহকারী শিক্ষক, হিফজ বিভাগ</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👳</div>
+                            <div class="teacher-info"><p>হাফেজ মাওলানা মুহিবুল্লাহ</p><p>সহকারী দারুল ইকামা ও সহকারী শিক্ষক, নাজেরা বিভাগ</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👳</div>
+                            <div class="teacher-info"><p>মাওলানা ইউসুফ</p><p>সহকারী শিক্ষক, নূরানী বিভাগ</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👳</div>
+                            <div class="teacher-info"><p>হাফেজ সাকিব মাহমুদ</p><p>সহকারী শিক্ষক, নূরানী বিভাগ</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👳</div>
+                            <div class="teacher-info"><p>হাফেজ মাওলানা সুলাইমান</p><p>সহকারী শিক্ষক, নূরানী বিভাগ</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">👨‍🏫</div>
+                            <div class="teacher-info"><p>মাস্টার এমদাদুল ইসলাম</p><p>সহকারী শিক্ষক, নূরানী বিভাগ এবং হিসাব রক্ষক</p></div>
+                        </div>
+                        <div class="teacher-item">
+                            <div class="teacher-avatar">🍳</div>
+                            <div class="teacher-info"><p>আব্দুল আজিজ সাহেব</p><p>প্রধান বাবুর্চি (আবাসিক খানা বিভাগ)</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 ইসলামপুর ইশাআ'তুস সুন্নাহ录取মাদ্রাসা। সর্বস্বত্ব সংরক্ষিত • কারিগরি সহযোগিতায়: সাফা স্নিগ্ধা টেক টিম</p>
+    </footer>
+
+    <!-- Dropdown Toggle Logic -->
+    <script>
+        function toggleDropdown(id, headerBtn) {
+            const content = document.getElementById(id);
+            headerBtn.classList.toggle('active');
+            content.classList.toggle('open');
+            
+            if (content.classList.contains('open')) {
+                content.style.maxHeight = content.scrollHeight + "px";
+            } else {
+                content.style.maxHeight = "0px";
+            }
+        }
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ইসলামপুর ইশাআ'তুস সুন্নাহ闯মাদ্রাসা | কমপ্লিট ড্যাশবোর্ড</title>
     <style>
         /* আদর্শ লিপি ও চমৎকার ক্যালিগ্রাফি স্টাইলের ফন্ট লোড করা হয়েছে */
